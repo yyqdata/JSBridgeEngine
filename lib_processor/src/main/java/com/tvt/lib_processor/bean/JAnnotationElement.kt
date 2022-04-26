@@ -31,7 +31,6 @@ sealed class JAnnotationElement(
         return "JAnnotationElement(pkgName='$pkgName', enclosingElementName='$enclosingElementName', " +
                 "elementName='$elementName', elementType=$elementType, elementKind=$elementKind)"
     }
-
 }
 
 data class JRegisterElement(override val element: Element, override val elementUtils: Elements) :
@@ -40,10 +39,12 @@ data class JRegisterElement(override val element: Element, override val elementU
     val registerNeedData = element.getAnnotation(JRegister::class.java).needData // 注解参数 needData
     val registerNeedCallback =
         element.getAnnotation(JRegister::class.java).needCallbackFun // 注解参数 needCallbackFun
+    val registerIsDefaultHandler =
+        element.getAnnotation(JRegister::class.java).isDefaultHandler // 注解参数 isDefaultHandler
 
     override fun toString(): String {
         return "JRegisterElement(element=$element, elementUtils=$elementUtils, registerName='$registerName', " +
-                "registerNeedData=$registerNeedData, registerNeedCallback=$registerNeedCallback) ${super.toString()}"
+                "registerNeedData=$registerNeedData, registerNeedCallback=$registerNeedCallback, registerIsDefaultHandler=$registerIsDefaultHandler)"
     }
 }
 

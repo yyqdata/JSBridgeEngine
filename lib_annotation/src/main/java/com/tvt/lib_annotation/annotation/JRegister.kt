@@ -14,5 +14,6 @@ import org.jetbrains.annotations.NotNull
 annotation class JRegister(
     @NotNull val name: String = "", // js注册函数名，如果为 "" 则获取注解函数名
     val needData: Boolean = true,//js 回调的数据是否需要
-    val needCallbackFun: Boolean = true // js 回调函数是否需要  如果需要，函数入参必须带 CallBackFunction对象
+    val needCallbackFun: Boolean = true, // js 回调函数是否需要  如果需要，函数入参必须带 CallBackFunction对象
+    val isDefaultHandler:Boolean = false // 默认不是 DefaultHandler ，如果是则调用 setDefaultHandler
 )

@@ -34,7 +34,6 @@ class JSBridgeProcessor : AbstractProcessor() {
     )
 
     //    com.github.lzyzsd.jsbridge.BridgeWebView
-    private val mockPath = "com.tvt.superpartner.jsbridge"
 
     private val jsBridgeEngine = "JsBridgeEngine"
 
@@ -164,10 +163,12 @@ class JSBridgeProcessor : AbstractProcessor() {
                     2 -> "(${paramsArray[0]}, ${paramsArray[1]})"
                     else -> "()"
                 }
+                val registerFun =
+                    if (element.registerIsDefaultHandler) "setDefaultHandler" else "registerHandler(%S)"
                 startFunBuilder.addStatement(
                     """
                     |
-                    |$bridgeWebView.registerHandler(%S){ data, function ->
+                    |$bridgeWebView.$registerFun { data, function ->
                     |   $propertyName.${element.elementName}$paramStatement
                     |}
                 """.trimMargin(),
@@ -195,7 +196,7 @@ class JSBridgeProcessor : AbstractProcessor() {
                     .addStatement(
                         """
                             |
-                            |callHandler(%S, dataToJs){ data ->
+                            |callHandler(%S, dataToJs) { data ->
                             |   $jsBridgeEngine.$propertyName.${element.elementName}$paramStatement
                             |}
                         """.trimMargin(),
@@ -386,66 +387,4 @@ class JSBridgeProcessor : AbstractProcessor() {
     private fun TypeMirror.isCallBackFunction(): Boolean =
         toString() == Constants.callBackFunction.toString()
 
-    private fun mock() {
-        val jsBridgeClass = ClassName(mockPath, "JsBridgeUtilsTest")
-        val log = MemberName("android.util", "Log")
-        val jsStringFun = FunSpec.builder("jString")
-            .addModifiers(KModifier.PRIVATE)
-            .addParameter("str", String::class)
-            .addStatement("return %P", "jString_\$str")
-            .returns(String::class)
-            .build()
-        val jsRegisterFun = FunSpec.builder("jsRegister")
-            .addParameter("name", String::class)
-            .returns(Boolean::class)
-            .addStatement(
-                """
-                                    |this.name = %P
-                                    |%M.d(%S,%P+%N(name))
-                                    |return true
-                """.trimIndent().trimMargin(),
-                "World_\$name",
-                log,
-                jsBridgeClass.simpleName,
-                "Hello_\${this.name}\n",
-                jsStringFun
-            )
-            .build()
-
-        val arrayOf = MemberName("kotlin", "arrayOf")
-        val method = ClassName("java.lang.reflect", "Method")
-        val file = FileSpec.builder(mockPath, "JsBridgeUtilsTest")
-            .addType(
-                TypeSpec.classBuilder("JsBridgeUtilsTest")
-                    .primaryConstructor(
-                        FunSpec.constructorBuilder()
-                            .addParameter("name", String::class) //单独构造器参数不能添加 可见性修饰符 private 等
-                            .build()
-                    )
-                    .addProperty(
-                        PropertySpec.builder("name", String::class, KModifier.PRIVATE)
-                            .initializer("name", "hahaha")
-                            .mutable()
-                            .build()
-                    )
-                    .addProperty(
-                        PropertySpec.builder(
-                            "registerMethods",
-                            Array::class.asTypeName().parameterizedBy(method)
-                        )
-                            .initializer("%M()", arrayOf)
-                            .build()
-                    )
-                    .addFunction(
-                        jsRegisterFun
-                    )
-                    .addFunction(
-                        jsStringFun
-                    )
-                    .build()
-            )
-            .build()
-
-        file.writeTo(filer)
-    }
 }

@@ -59,7 +59,7 @@ object JSBridgeManager {
 
     fun start(webView: BridgeWebView) {
         if (!this::enginePaths.isInitialized) {
-            throw RuntimeException("JSBridgeProxy init not call!!")
+            throw RuntimeException("JSBridgeManager init not call!!")
         }
         try {
             for (i in engines.indices) {

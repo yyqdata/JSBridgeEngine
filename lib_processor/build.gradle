@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
     id 'kotlin-kapt'
 }
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.yyqdata'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7

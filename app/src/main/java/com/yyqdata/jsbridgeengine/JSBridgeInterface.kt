@@ -1,7 +1,6 @@
 package com.yyqdata.jsbridgeengine
 
 import android.util.Log
-import android.widget.Toast
 import com.github.lzyzsd.jsbridge.CallBackFunction
 import com.tvt.lib_annotation.annotation.JCall
 import com.tvt.lib_annotation.annotation.JRegister

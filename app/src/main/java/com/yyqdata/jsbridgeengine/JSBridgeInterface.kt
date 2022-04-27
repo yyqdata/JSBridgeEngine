@@ -22,6 +22,7 @@ class JSBridgeInterface {
     @JRegister
     fun submitFromWeb(data: String, function: CallBackFunction) {
         Log.d("JSBridgeInterface", "submitFromWeb: $data")
+        Log.d("JSBridgeInterface", "submitFromWeb size: ${data.length}")
         function.onCallBack("submitFromWeb 返回数据 submitFromWeb")
     }
 

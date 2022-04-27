@@ -4,9 +4,6 @@ plugins {
     id 'kotlin-kapt'
 }
 
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.yyqdata'
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -43,6 +40,29 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
     api 'com.github.lzyzsd:jsbridge:1.0.4'
-    api project(path: ':lib_annotation')
+    api project(path: ':lib_processor')
 //    kapt project(path: ':lib_processor')
 }
+
+def siteUrl = 'https://github.com/lzyzsd/JsBridge'
+def gitUrl = 'https://github.com/lzyzsd/JsBridge.git'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.yyqdata'
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())

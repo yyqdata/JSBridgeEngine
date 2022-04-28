@@ -44,12 +44,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.5'
-    api "androidx.multidex:multidex:$rootProject.ext.multidex_version"
+    implementation "androidx.multidex:multidex:$rootProject.ext.multidex_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
 
-    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_7'
-    implementation 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_7'
-    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_7'
-//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_7'
+    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_8'
+    implementation 'com.github.yyqdata.JSBridgeEngine:jsbridge_library:0.0.4_8'
+    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_8'
 //    implementation project(path: ':wvjsbridge')
 //    kapt project(path: ':lib_processor')
 

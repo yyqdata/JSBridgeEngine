@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             binding.webView.functionInJs("data from Java")
         }
 
+
         webViewSetting()
     }
 

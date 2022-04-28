@@ -16,7 +16,7 @@ def needJitpack = true
 dependencies {
     if (needJitpack) {
         // makeJar 会将jar包整合，因此这里只能用 compileOnly 否则会冲突
-        compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
     } else {
         api fileTree(include: ['*.jar'], dir: 'libs')
     }

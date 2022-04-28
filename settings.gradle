@@ -2,5 +2,4 @@ rootProject.name = "JSBridgeEngine"
 include ':app'
 include ':lib_annotation'
 include ':lib_processor'
-//include ':jsbridge_library'
 include ':wvjsbridge'

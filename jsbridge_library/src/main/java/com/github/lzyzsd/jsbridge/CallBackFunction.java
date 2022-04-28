@@ -2,6 +2,6 @@ package com.github.lzyzsd.jsbridge;
 
 public interface CallBackFunction {
 	
-	void onCallBack(String data);
+	public void onCallBack(String data);
 
 }

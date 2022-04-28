@@ -11,7 +11,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-def needJitpack = true
+def needJitpack = true // 上传git时需要为 true 本地调试 false
 
 dependencies {
     if (needJitpack) {

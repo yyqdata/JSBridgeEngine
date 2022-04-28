@@ -14,6 +14,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,11 +44,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.5'
+    api "androidx.multidex:multidex:$rootProject.ext.multidex_version"
 
-//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_4'
-//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_4'
+//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_5'
 //    implementation 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_4'
-//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_4'
+//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_5'
+//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_5'
     implementation project(path: ':wvjsbridge')
     kapt project(path: ':lib_processor')
 

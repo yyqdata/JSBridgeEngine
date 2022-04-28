@@ -44,8 +44,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4-1'
-    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4-1'
+    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_1'
+    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_1'
 //    implementation project(path: ':wvjsbridge')
 //    kapt project(path: ':lib_processor')
 

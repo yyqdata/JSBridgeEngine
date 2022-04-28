@@ -14,12 +14,8 @@ java {
 def needJitpack = false
 
 dependencies {
-    if (needJitpack) {
         // makeJar 会将jar包整合，因此这里只能用 compileOnly 否则会冲突
 //        implementation fileTree(include: ['*.jar'], dir: 'libs')
-    } else {
-//        api fileTree(include: ['*.jar'], dir: 'libs')
-    }
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
     api project(path: ':lib_annotation')
@@ -40,5 +36,5 @@ task makeJar(type: Jar) {
     destinationDir = file('build/libs')
 }
 if (needJitpack) {
-    jar.finalizedBy(makeJar) // jar 执行完后执行 makeJar 如果编译不过 删除 .gradle 缓存即可
+//    jar.finalizedBy(makeJar) // jar 执行完后执行 makeJar 如果编译不过 删除 .gradle 缓存即可
 }

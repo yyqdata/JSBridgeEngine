@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             binding.webView.functionInJs("data from Java")
         }
+
         webViewSetting()
     }
 

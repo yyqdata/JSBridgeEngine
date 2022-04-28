@@ -41,6 +41,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
     api project(path: ':lib_processor')
 //    kapt project(path: ':lib_processor')
+//    api 'com.github.lzyzsd:jsbridge:1.0.4'
     api project(path: ':jsbridge_library')
 }
 

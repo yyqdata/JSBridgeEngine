@@ -12,7 +12,6 @@ import android.webkit.WebView;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.lzyzsd.library.BuildConfig;
@@ -20,10 +19,10 @@ import com.google.gson.Gson;
 
 
 import org.json.JSONObject;
-
-import java.net.URLEncoder;
+import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,10 +31,10 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
 
 	private final int URL_MAX_CHARACTER_NUM=2097152;
 	public static final String toLoadJs = "WebViewJavascriptBridge.js";
-	Map<String, CallBackFunction> responseCallbacks = new HashMap<String, CallBackFunction>();
-	Map<String, BridgeHandler> messageHandlers = new HashMap<String, BridgeHandler>();
-	BridgeHandler defaultHandler = new DefaultHandler();
-    private Map<String, OnBridgeCallback> mCallbacks = new ArrayMap<>();
+	Map<String, CallBackFunction> responseCallbacks = new HashMap<>();
+	Map<String, BridgeHandler> messageHandlers = new HashMap<>();
+	BridgeHandler defaultHandler = (BridgeHandler) new DefaultHandler();
+    private Map<String, CallBackFunction> mCallbacks = new ArrayMap<>();
 
     private List<Object> mMessages = new ArrayList<>();
 
@@ -85,7 +84,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
         return mJSLoaded;
     }
 
-    public Map<String, OnBridgeCallback> getCallbacks() {
+    public Map<String, CallBackFunction> getCallbacks() {
         return mCallbacks;
     }
 
@@ -112,11 +111,11 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
 
     @Override
     public void sendToWeb(Object data) {
-        sendToWeb(data, (OnBridgeCallback) null);
+        sendToWeb(data, (CallBackFunction) null);
     }
 
     @Override
-    public void sendToWeb(Object data, OnBridgeCallback responseCallback) {
+    public void sendToWeb(Object data, CallBackFunction responseCallback) {
         doSend(null, data, responseCallback);
     }
 
@@ -128,7 +127,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
      * @param data        data
      * @param callBack    OnBridgeCallback
      */
-    public void callHandler(String handlerName, String data, OnBridgeCallback callBack) {
+    public void callHandler(String handlerName, String data, CallBackFunction callBack) {
         doSend(handlerName, data, callBack);
     }
 
@@ -150,7 +149,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
      * @param data             data
      * @param responseCallback OnBridgeCallback
      */
-    private void doSend(String handlerName, Object data, OnBridgeCallback responseCallback) {
+    private void doSend(String handlerName, Object data, CallBackFunction responseCallback) {
         if (!(data instanceof String) && mGson == null){
             return;
         }
@@ -238,9 +237,9 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
 
     public static abstract class BaseJavascriptInterface {
 
-        private Map<String, OnBridgeCallback> mCallbacks;
+        private Map<String, CallBackFunction> mCallbacks;
 
-        public BaseJavascriptInterface(Map<String, OnBridgeCallback> callbacks) {
+        public BaseJavascriptInterface(Map<String, CallBackFunction> callbacks) {
             mCallbacks = callbacks;
         }
 
@@ -254,7 +253,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge, B
         public void response(String data, String responseId) {
             Log.d("chromium", data + ", responseId: " + responseId + " " + Thread.currentThread().getName());
             if (!TextUtils.isEmpty(responseId)) {
-                OnBridgeCallback function = mCallbacks.remove(responseId);
+                CallBackFunction function = mCallbacks.remove(responseId);
                 if (function != null) {
                     function.onCallBack(data);
                 }

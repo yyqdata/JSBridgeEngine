@@ -44,11 +44,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4'
-    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4'
-//    api 'com.github.lzyzsd:jsbridge:1.0.4'
-//    implementation project(path: ':wvjsbridge')
-//    kapt project(path: ':lib_processor')
+//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4'
+//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4'
+    implementation project(path: ':wvjsbridge')
+    kapt project(path: ':lib_processor')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

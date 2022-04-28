@@ -4,16 +4,22 @@ plugins {
     id 'kotlin-kapt'
 }
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.yyqdata'
+group = 'com.github.yyqdata'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
+def needJitpack = true
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
+    if (needJitpack) {
+        // makeJar 会将jar包整合，因此这里只能用 compileOnly 否则会冲突
+        compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+    } else {
+        api fileTree(include: ['*.jar'], dir: 'libs')
+    }
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
     api project(path: ':lib_annotation')
@@ -22,4 +28,17 @@ dependencies {
     kapt "com.google.auto.service:auto-service:1.0-rc7"
     // kotlinpoet
 //    implementation 'com.squareup:kotlinpoet:1.11.0'
+}
+
+task makeJar(type: Jar) {
+    if (file('build/libs/lib_processor.jar').exists()) {
+        delete 'build/libs/lib_processor.jar'
+    }
+    archivesBaseName = 'lib_processor'
+    from('build/classes/kotlin/main/') // 打包原有源代码
+    from(project.zipTree('libs/kotlinpoet-1.11.0.jar')) // 打包第三方库源代码
+    destinationDir = file('build/libs')
+}
+if (needJitpack) {
+    jar.finalizedBy(makeJar) // jar 执行完后执行 makeJar 如果编译不过 删除 .gradle 缓存即可
 }

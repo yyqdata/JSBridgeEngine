@@ -17,7 +17,7 @@ dependencies {
     if (needJitpack) {
         // makeJar 会将jar包整合，因此这里只能用 compileOnly 否则会冲突
         compileOnly fileTree(include: ['*.jar'], dir: 'libs')
-    }else {
+    } else {
         implementation fileTree(include: ['*.jar'], dir: 'libs')
     }
 
@@ -25,7 +25,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
     api project(path: ':lib_annotation')
     // apt依赖
-    api "com.google.auto.service:auto-service:1.0-rc7"
+    compileOnly "com.google.auto.service:auto-service:1.0-rc7"
     kapt "com.google.auto.service:auto-service:1.0-rc7"
 }
 
@@ -40,6 +40,7 @@ task makeJar(type: Jar) {
     }
     archivesBaseName = 'lib_processor'
     from('build/classes/kotlin/main/') // 打包原有源代码
+    from('build/tmp/kapt3/classes/main/') //打包 META-INF.services
     from(project.zipTree('libs/kotlinpoet-1.11.0.jar')) // 打包第三方库源代码
     destinationDir = file('build/libs')
 }

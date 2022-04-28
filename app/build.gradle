@@ -46,10 +46,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     api "androidx.multidex:multidex:$rootProject.ext.multidex_version"
 
-//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_5'
-//    implementation 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_4'
-//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_5'
-//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_5'
+//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_6'
+//    implementation 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_6'
+//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_6'
+//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_6'
     implementation project(path: ':wvjsbridge')
     kapt project(path: ':lib_processor')
 

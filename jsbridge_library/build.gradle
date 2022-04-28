@@ -30,10 +30,16 @@ android {
             //manifest.srcFile 'AndroidManifest.xml'
             //aidl.srcDirs = ['src']
             //renderscript.srcDirs = ['src']
-            assets.srcDirs = ['assets']
+            assets.srcDirs = ['src/main/assets']
             //jniLibs.srcDirs = ['libs']
             //jniLibs.srcDirs = ['jni']
         }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -43,7 +49,7 @@ dependencies {
 }
 
 
-//apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.yyqdata'
 
 //task sourcesJar(type: Jar) {

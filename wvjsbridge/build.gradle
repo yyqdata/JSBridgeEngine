@@ -22,6 +22,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+            //java.srcDirs 'src'
+            //manifest.srcFile 'AndroidManifest.xml'
+            //aidl.srcDirs = ['src']
+            //renderscript.srcDirs = ['src']
+            assets.srcDirs = ['src/main/assets']
+            //jniLibs.srcDirs = ['libs']
+            //jniLibs.srcDirs = ['jni']
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -44,7 +58,7 @@ dependencies {
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.yyqdata'
+group = 'com.github.yyqdata'
 
 //task sourcesJar(type: Jar) {
 //    from android.sourceSets.main.java.srcDirs

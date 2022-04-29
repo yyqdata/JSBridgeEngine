@@ -64,7 +64,7 @@ dependencies {
     api project(path: ':lib_processor')
 //    kapt project(path: ':lib_processor')
 //    api 'com.github.lzyzsd:jsbridge:1.0.4'
-//    api project(path: ':jsbridge_library')
+    api project(path: ':jsbridge_library')
 }
 
 apply plugin: 'com.github.dcendents.android-maven'

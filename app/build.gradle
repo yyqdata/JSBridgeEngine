@@ -48,10 +48,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
 
-    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_14'
+    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_15'
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
-    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_14'
-    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_14'
+    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_15'
+    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_15'
 //    implementation project(path: ':wvjsbridge')
 //    kapt project(path: ':lib_processor')
 

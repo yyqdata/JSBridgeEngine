@@ -42,6 +42,8 @@ task makeJar(type: Jar) {
     from('build/classes/kotlin/main/') // 打包原有源代码
     from('build/tmp/kapt3/classes/main/') //打包 META-INF.services
     from(project.zipTree('libs/kotlinpoet-1.11.0.jar')) // 打包第三方库源代码
+    // exclude('')
+    //include('')
     destinationDir = file('build/libs')
 }
 if (needJitpack) {

@@ -52,10 +52,11 @@ dependencies {
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.yyqdata'
 
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    from android.sourceSets.main.assets.srcDirs
+    classifier = 'sources'
+}
 //task javadoc(type: Javadoc) {
 //    source = android.sourceSets.main.java.srcDirs
 //    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
@@ -64,9 +65,9 @@ group='com.github.yyqdata'
 //    classifier = 'javadoc'
 //    from javadoc.destinationDir
 //}
-//artifacts {
+artifacts {
 //    archives javadocJar
-//    archives sourcesJar
-//}
+    archives sourcesJar
+}
 //Properties properties = new Properties()
 //properties.load(project.rootProject.file('local.properties').newDataInputStream())

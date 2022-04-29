@@ -37,12 +37,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -50,13 +44,13 @@ dependencies {
 
 
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.yyqdata'
+group = 'com.github.yyqdata'
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    from android.sourceSets.main.assets.srcDirs
-    classifier = 'sources'
-}
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    from android.sourceSets.main.assets.srcDirs
+//    classifier = 'sources'
+//}
 //task javadoc(type: Javadoc) {
 //    source = android.sourceSets.main.java.srcDirs
 //    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
@@ -65,9 +59,9 @@ task sourcesJar(type: Jar) {
 //    classifier = 'javadoc'
 //    from javadoc.destinationDir
 //}
-artifacts {
+//artifacts {
 //    archives javadocJar
-    archives sourcesJar
-}
+//    archives sourcesJar
+//}
 //Properties properties = new Properties()
 //properties.load(project.rootProject.file('local.properties').newDataInputStream())

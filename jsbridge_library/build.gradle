@@ -23,18 +23,18 @@ android {
         checkReleaseBuilds false
     }
 
-    sourceSets {
-        main {
-            res.srcDirs = ['src/main/res']
-            //java.srcDirs 'src'
-            //manifest.srcFile 'AndroidManifest.xml'
-            //aidl.srcDirs = ['src']
-            //renderscript.srcDirs = ['src']
-            assets.srcDirs = ['src/main/assets']
-            //jniLibs.srcDirs = ['libs']
-            //jniLibs.srcDirs = ['jni']
-        }
-    }
+//    sourceSets {
+//        main {
+//            res.srcDirs = ['src/main/res']
+//            //java.srcDirs 'src'
+//            //manifest.srcFile 'AndroidManifest.xml'
+//            //aidl.srcDirs = ['src']
+//            //renderscript.srcDirs = ['src']
+//            assets.srcDirs = ['src/main/assets']
+//            //jniLibs.srcDirs = ['libs']
+//            //jniLibs.srcDirs = ['jni']
+//        }
+//    }
 }
 
 dependencies {

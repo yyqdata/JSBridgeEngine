@@ -25,6 +25,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+            //java.srcDirs 'src'
+            //manifest.srcFile 'AndroidManifest.xml'
+            //aidl.srcDirs = ['src']
+            //renderscript.srcDirs = ['src']
+            assets.srcDirs = ['src/main/assets']
+            //jniLibs.srcDirs = ['libs']
+            //jniLibs.srcDirs = ['jni']
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -48,12 +60,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
 
-    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_15'
-    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
-    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_15'
-    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_15'
-//    implementation project(path: ':wvjsbridge')
-//    kapt project(path: ':lib_processor')
+//    implementation 'com.github.yyqdata:JSBridgeEngine:0.0.4_16'
+//    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+//    implementation 'com.github.yyqdata.JSBridgeEngine:wvjsbridge:0.0.4_16'
+//    kapt 'com.github.yyqdata.JSBridgeEngine:lib_processor:0.0.4_16'
+    implementation project(path: ':wvjsbridge')
+    kapt project(path: ':lib_processor')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
